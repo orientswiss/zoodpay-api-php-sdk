@@ -11,7 +11,7 @@ ZoodPay wants to provide its payment solution to every online business who may b
 
 ```bash
 "Php Extension": curl, json , openssl
-"php" : >=5.4,
+"php" : >=5.6,
 ```
 ## Installation
 You can install the package via composer:
