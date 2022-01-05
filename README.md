@@ -16,7 +16,7 @@ ZoodPay wants to provide its payment solution to every online business who may b
 ## Installation
 You can install the package via composer:
 ```bash
-composer require zoodpay/merchant-api-php-sdk
+composer require zoodpay/api-php-sdk
 ```
 ## Usage
 
