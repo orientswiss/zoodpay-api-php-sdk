@@ -1,0 +1,44 @@
+{
+  "name":"zoodpay/api-php-sdk",
+  "description":"Official ZoodPay API PHP SDK",
+  "version": "1.0.0",
+  "keywords":[
+    "api php sdk",
+    "bnpl",
+    "zoodpay",
+    "psyment"
+  ],
+  "type":"library",
+  "license":"MIT",
+  "authors":[
+    {
+      "name":"Jitendra Yadav",
+      "email":"jitendra.yadav@zoodpay.com"
+    },
+    {
+      "name": "Mohammadali Namazi",
+      "email": "mohammadali.namazi@zoodpay.com",
+      "role": "Developer/Integration Enginner"
+    }
+  ],
+  "require":{
+    "php" : ">=5.6",
+    "guzzlehttp/guzzle": "~6.0 || ~7.0",
+    "ext-json": "*"
+  },
+  "autoload":{
+    "psr-4":{
+      "ZoodPay\\Api\\SDK\\":"src/"
+    }
+  },
+  "config":{
+    "preferred-install":"dist",
+    "sort-packages":true
+  },
+  "minimum-stability":"dev",
+  "prefer-stable":true,
+  "require-dev": {
+    "phpunit/phpunit": "^7",
+    "phpunit/dbunit": "^4.0"
+  }
+}

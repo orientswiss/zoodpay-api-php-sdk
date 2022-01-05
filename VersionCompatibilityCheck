@@ -1,0 +1,12 @@
+# Run this file by as follow for checking PHP version compatibility
+# bash VersionCompatibilityCheck
+
+my_array=(5.6 7.0 7.1 7.2 7.3 7.4)
+
+for i in "${my_array[@]}"; 
+do 
+    echo -e "PHP $i \n";
+    sudo docker build --build-arg PHP_VERSION="$i" -t php-sdk-image-"$i" .
+    sudo docker run --rm php-sdk-image-"$i";
+    echo -e "\n=======================================================";
+done
