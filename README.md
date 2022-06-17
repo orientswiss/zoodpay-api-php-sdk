@@ -8,9 +8,9 @@
 
 ZoodPay wants to provide its payment solution to every online business who may be interested in it. ZoodPay API v0 is the latest version which offers our latest features.
 
-[ZoodPay API Documentation](https://apidocs.zoodpay.com/)
+[ZoodPay API Documentation](https://api.zoodpay.com/)
 
-[ZoodPay API API Simulator](https://apidocs.zoodpay.com/docs)
+[ZoodPay API API Simulator](https://api.zoodpay.com/docs)
 
 
 ## Requirement
@@ -197,15 +197,15 @@ $shippingService->setPriority("Express");
 $shippingService->setShippedAt("Date");
 $shippingService->setTracking("HHHHHHH0-hhsh");
 
-$items = new Items();
-$items->setName("Test Product");
-$items->setCategories(["Products-Category1"]);
-$items->setCurrencyCode("UZS");
-$items->setDiscountAmount(1.00);
-$items->setPrice(600.00);
-$items->setQuantity(1.00);
-$items->setSku("Test-SKU");
-$items->setTaxAmount(1.00);
+$items[] = new Items();
+$items[0]->setName("Test Product");
+$items[0]->setCategories(["Products-Category1"]);
+$items[0]->setCurrencyCode("UZS");
+$items[0]->setDiscountAmount(1.00);
+$items[0]->setPrice(600.00);
+$items[0]->setQuantity(1.00);
+$items[0]->setSku("Test-SKU");
+$items[0]->setTaxAmount(1.00);
 
 try{
     echo "Create transaction" . PHP_EOL;

@@ -167,15 +167,15 @@ $shippingService->setPriority("Express");
 $shippingService->setShippedAt("Date");
 $shippingService->setTracking("HHHHHHH0-hhsh");
 
-$items = new Items();
-$items->setName("Test Product");
-$items->setCategories(["Products-Category1"]);
-$items->setCurrencyCode("UZS");
-$items->setDiscountAmount(1.00);
-$items->setPrice(600.00);
-$items->setQuantity(1.00);
-$items->setSku("Test-SKU");
-$items->setTaxAmount(1.00);
+$items[] = new Items();
+$items[0]->setName("Test Product");
+$items[0]->setCategories(["Products-Category1"]);
+$items[0]->setCurrencyCode("UZS");
+$items[0]->setDiscountAmount(1.00);
+$items[0]->setPrice(600.00);
+$items[0]->setQuantity(1.00);
+$items[0]->setSku("Test-SKU");
+$items[0]->setTaxAmount(1.00);
 
 try{
     echo "Create transaction" . PHP_EOL;

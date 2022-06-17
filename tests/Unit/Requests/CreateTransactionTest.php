@@ -70,15 +70,16 @@ class CreateTransactionTest extends TestCase
         $shippingService->setShippedAt("Date");
         $shippingService->setTracking("HHHHHHH0-hhsh");
 
-        $items = new Items();
-        $items->setName("Test Product" . generateRandomString());
-        $items->setCategories(["Products-Category1"]);
-        $items->setCurrencyCode($feed["currency"]);
-        $items->setDiscountAmount(0.00);
-        $items->setPrice($feed["amount"]);
-        $items->setQuantity(1.00);
-        $items->setSku("Test-SKU" . generateRandomString());
-        $items->setTaxAmount(0.00);
+
+        $items[]= new Items();
+        $items[0]->setName("Test Product". generateRandomString() );
+        $items[0]->setCategories(["Products-Category1"]);
+        $items[0]->setCurrencyCode($feed["currency"]);
+        $items[0]->setDiscountAmount(1.00);
+        $items[0]->setPrice($feed["amount"]);
+        $items[0]->setQuantity(1.00);
+        $items[0]->setSku("Test-SKU". generateRandomString());
+        $items[0]->setTaxAmount(1.00);
 
         $transactionRequest = new CreateTransaction();
         $response = $transactionRequest->create($billing, $customer, $items, $order, $shipping, $shippingService);
@@ -92,14 +93,10 @@ class CreateTransactionTest extends TestCase
         $this->assertStringContainsString("session_token", $body, "Transaction Do not have Session Token");
         $this->assertStringContainsString("signature", $body, "Transaction Do not have Signature");
 
-
         echo "Status Code: " . $statusCode . PHP_EOL;
         echo "Response: ";
         print_r($body);
         echo PHP_EOL;
-
-
-        $info = "M";
 
     }
 

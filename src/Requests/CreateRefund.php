@@ -2,13 +2,15 @@
 
 namespace ZoodPay\Api\SDK\Requests;
 
+use GuzzleHttp\Exception\GuzzleException;
+use Psr\Http\Message\ResponseInterface;
 use ZoodPay\Api\SDK\Model\RefundCreate;
 use ZoodPay\Api\SDK\Request;
 
 class CreateRefund extends Request
-{   
+{
     /**
-     * 
+     *
      */
     public function __construct($data = [], $merchant = null)
     {
@@ -20,16 +22,15 @@ class CreateRefund extends Request
 
     /**
      * @param RefundCreate $refund
-     * @return \Psr\Http\Message\ResponseInterface
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @return ResponseInterface
+     * @throws GuzzleException
      */
     public function create($refund)
     {
-        $this->data = json_encode( $refund->jsonSerialize());
+        $this->data = json_encode($refund->jsonSerialize());
 
-
-        $client     = $this->getClient();
-        $version    = $this->merchant->getApiVersion();
+        $client = $this->getClient();
+        $version = $this->merchant->getApiVersion();
         return $client->post("/$version/refunds", ['body' => $this->data]);
     }
 }
