@@ -3,10 +3,12 @@
   "description":"Official ZoodPay API PHP SDK",
   "version": "1.0.0",
   "keywords":[
-    "api php sdk",
-    "bnpl",
     "zoodpay",
-    "psyment"
+    "api",
+    "php",
+    "sdk",
+    "bnpl",
+    "payment"
   ],
   "type":"library",
   "license":"MIT",

@@ -1,5 +1,11 @@
 # PHP SDK for ZoodPay API
-###ZoodPay API
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
+[![Packagist Downloads](https://img.shields.io/packagist/dt/zoodpay/api-php-sdk?style=flat-square)](https://packagist.org/packages/zoodpay/api-php-sdk)
+
+
+## ZoodPay API
+
+
 ZoodPay wants to provide its payment solution to every online business who may be interested in it. ZoodPay API v0 is the latest version which offers our latest features.
 
 [ZoodPay API Documentation](https://apidocs.zoodpay.com/)
@@ -7,7 +13,7 @@ ZoodPay wants to provide its payment solution to every online business who may b
 [ZoodPay API API Simulator](https://apidocs.zoodpay.com/docs)
 
 
-##Requirement
+## Requirement
 
 ```bash
 "Php Extension": curl, json , openssl
@@ -265,6 +271,10 @@ echo PHP_EOL;
 ```
 ### Security
 If you discover any security related issues, please email integration@zoodpay.com instead of using the issue tracker.
+
+## Changelog
+Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+
 
 ## License
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.

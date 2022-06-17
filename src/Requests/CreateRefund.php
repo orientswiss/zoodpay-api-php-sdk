@@ -2,7 +2,7 @@
 
 namespace ZoodPay\Api\SDK\Requests;
 
-use Zoodpay\Api\SDK\Model\RefundCreate;
+use ZoodPay\Api\SDK\Model\RefundCreate;
 use ZoodPay\Api\SDK\Request;
 
 class CreateRefund extends Request

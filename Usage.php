@@ -5,7 +5,7 @@ use ZoodPay\Api\SDK\Config;
 use ZoodPay\Api\SDK\Model\BillingShipping;
 use ZoodPay\Api\SDK\Model\Credit;
 use ZoodPay\Api\SDK\Model\Customer;
-use Zoodpay\Api\SDK\Model\Delivery;
+use ZoodPay\Api\SDK\Model\Delivery;
 use ZoodPay\Api\SDK\Model\Items;
 use ZoodPay\Api\SDK\Model\Order;
 use ZoodPay\Api\SDK\Model\RefundCreate;
@@ -57,7 +57,7 @@ try{
     PersistentStorage::testConnection();
 
     // Get order limits if Persistent Storage is configured.
-    $limits = PersistentStorage::getLimits('UZ', 'ZPI');
+    $limits = (new ZoodPay\Api\SDK\PersistentStorage)->getLimits('UZ', 'ZPI');
     echo "Response: "; print_r($limits);
     echo PHP_EOL;
 }

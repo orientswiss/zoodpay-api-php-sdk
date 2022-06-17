@@ -1,6 +1,6 @@
 <?php
 
-namespace Zoodpay\Api\SDK\Model;
+namespace ZoodPay\Api\SDK\Model;
 
 use JsonSerializable;
 
