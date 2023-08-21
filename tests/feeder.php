@@ -2,6 +2,7 @@
 
 use ZoodPay\Api\SDK\Config;
 use ZoodPay\Api\SDK\Model\BillingShipping;
+use ZoodPay\Api\SDK\Model\Callbacks;
 use ZoodPay\Api\SDK\Model\Customer;
 use ZoodPay\Api\SDK\Model\Items;
 use ZoodPay\Api\SDK\Model\Order;
@@ -9,7 +10,6 @@ use ZoodPay\Api\SDK\Model\ShippingService;
 use ZoodPay\Api\SDK\Requests\CreateTransaction;
 use ZoodPay\Api\SDK\Requests\Signature;
 
-const  cd = array("UZ", "KZ", "JO");
 function generateRandomString($length = 10)
 {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -26,7 +26,6 @@ function createTestTransaction()
     $config = new  Config();
     $marketCode= $config::get('market_code');
     $feed = feedData($marketCode);
-
     $billing = new BillingShipping();
     $billing->setName("Test User");
     $billing->setPhoneNumber($feed["phone"]);
@@ -66,18 +65,26 @@ function createTestTransaction()
     $shippingService->setShippedAt("Date");
     $shippingService->setTracking("HHHHHHH0-hhsh");
 
-    $items = new Items();
-    $items->setName("Test Product" . generateRandomString());
-    $items->setCategories(["Products-Category1"]);
-    $items->setCurrencyCode($feed["currency"]);
-    $items->setDiscountAmount(0.00);
-    $items->setPrice($feed["amount"]);
-    $items->setQuantity(1.00);
-    $items->setSku("Test-SKU" . generateRandomString());
-    $items->setTaxAmount(0.00);
+
+    $items[]= new Items();
+    $items[0]->setName("Test Product". generateRandomString() );
+    $items[0]->setCategories(["Products-Category1"]);
+    $items[0]->setCurrencyCode($feed["currency"]);
+    $items[0]->setDiscountAmount(1.00);
+    $items[0]->setPrice($feed["amount"]);
+    $items[0]->setQuantity(1.00);
+    $items[0]->setSku("Test-SKU". generateRandomString());
+    $items[0]->setTaxAmount(1.00);
+
+
+    $callbacks = new Callbacks();
+    $callbacks->setErrorUrl("https://zoodpay.com");
+    $callbacks->setSuccessUrl("https://zoodpay.com");
+    $callbacks->setIpnUrl("https://zoodpay.com");
+    $callbacks->setRefundUrl("https://zoodpay.com");
 
     $transactionRequest = new CreateTransaction();
-    $response = $transactionRequest->create($billing, $customer, $items, $order, $shipping, $shippingService);
+    $response = $transactionRequest->create($billing, $customer, $items, $order, $shipping, $shippingService,$callbacks);
     return json_decode($response->getBody()->getContents(), true);
 
 }

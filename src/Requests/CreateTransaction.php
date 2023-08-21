@@ -29,10 +29,10 @@ class CreateTransaction extends Request
      * @return ResponseInterface
      * @throws GuzzleException
      */
-    public function create($billing, $customer, $items, $order, $shipping, $shippingService)
+    public function create($billing, $customer, $items, $order, $shipping, $shippingService, $callbacks)
     {
 
-        $this->data = json_encode(["billing" => $billing, "customer" => $customer, "items" => $items, "order" => $order, "shipping" => $shipping, "shipping_service" => $shippingService,], false);
+        $this->data = json_encode(["billing" => $billing, "customer" => $customer, "items" => $items, "order" => $order, "shipping" => $shipping, "shipping_service" => $shippingService, "callbacks" => $callbacks], false);
 
         $client = $this->getClient();
         $version = $this->merchant->getApiVersion();

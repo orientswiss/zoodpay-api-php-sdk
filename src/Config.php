@@ -110,18 +110,10 @@ final class Config
      * @return bool
      * @see https://www.php.net/manual/en/function.in-array.php#89256
      */
-    private static function inArrayCaseInsensitive($needle, $haystack, $strict = false)
-    {
-        return in_array(strtolower($needle), array_map('strtolower', $haystack), $strict);
-    }
-
-    /**
-     * @throws ZoodPay\Api\SDK\Exception\ParsingException
-     */
     private static function loadEnvConfig()
     {
         $zoodpay_sdk_env_config = null;
-        $package_installation_path = self::dirname(__FILE__, 2);
+        $package_installation_path = self::dirname(__DIR__, 5);
         $env_php_path = "{$package_installation_path}/.env.php";
 
         if (file_exists($env_php_path)) {
@@ -219,7 +211,7 @@ final class Config
                 if (! self::$envConfigLoaded) {
                     self::loadEnvConfig();
                 }
-            } 
+            }
             elseif (self::$data[$property]['src'] == 'composer.json') {
                 if (! self::$composerJsonLoaded) {
                     self::loadComposerJson();

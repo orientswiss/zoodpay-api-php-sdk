@@ -24,9 +24,35 @@ You can install the package via composer:
 ```bash
 composer require zoodpay/api-php-sdk
 ```
-## Usage
+## Setup
+You can setup the SDK:
+### 
+1. Through .env file.  
+- Copy and create .env from sample.env.php and load it.
+- Change the values accordingly.
+- The SDK will load the values automaticly. 
+2. Through .env.php
+- Copy and create .env.php from sample.env.php 
+- Change the values accordingly.
+- The SDK will load the values automaticly.
+3. Through Config Setter.
+```php
+$config = new  Config();
+$merchantKey = $config::get('merchant_id');
+$merchantSecretKey = $config::get('secret_key');
+$merchantSaltKey = $config::get('salt_key');
+$apiBaseUrl = $config::get('api_endpoint');
+$apiVersion = $config::get('api_version');
+$marketCode= $config::get('market_code');
+$dbHost = $config::get('db_host');
+$dbPort = $config::get('db_port');
+$dbDataBase = $config::get('db_database');
+$dbTable = $config::get('db_table_prefix');
+$dbUser = $config::get('db_user');
+$dbPassword = $config::get('db_password');
+```
 
-Create .env.php file by copying this config array and change values accordingly.
+## Usage
 
 ``` php
 require __DIR__ . '/vendor/autoload.php';
@@ -50,7 +76,7 @@ use ZoodPay\Api\SDK\Requests\GetCreditBalance;
 use ZoodPay\Api\SDK\Requests\SetTransactionDelivery;
 use ZoodPay\Api\SDK\Requests\CreateTransaction;
 use ZoodPay\Api\SDK\Requests\CreateRefund;
-use Zoodpay\Api\SDK\Requests\Signature;
+use ZoodPay\Api\SDK\Requests\Signature;
 
 // Health check
 try{
@@ -207,10 +233,16 @@ $items[0]->setQuantity(1.00);
 $items[0]->setSku("Test-SKU");
 $items[0]->setTaxAmount(1.00);
 
+$callbacks = new Callbacks();
+$callbacks->setErrorUrl("https://zoodpay.com");
+$callbacks->setSuccessUrl("https://zoodpay.com");
+$callbacks->setIpnUrl("https://zoodpay.com");
+$callbacks->setRefundUrl("https://zoodpay.com");
+
 try{
     echo "Create transaction" . PHP_EOL;
     $transactionRequest = new CreateTransaction();
-    $response = $transactionRequest->create($billing,$customer,$items,$order,$shipping,$shippingService);
+    $response = $transactionRequest->create($billing,$customer,$items,$order,$shipping,$shippingService,$callbacks);
     echo "Status Code: " . $response->getStatusCode() . PHP_EOL; 
     echo "Response: "; print_r($response->getBody()->getContents()); 
     echo PHP_EOL;

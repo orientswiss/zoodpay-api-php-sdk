@@ -3,6 +3,7 @@ require __DIR__ . '/vendor/autoload.php';
 
 use ZoodPay\Api\SDK\Config;
 use ZoodPay\Api\SDK\Model\BillingShipping;
+use ZoodPay\Api\SDK\Model\Callbacks;
 use ZoodPay\Api\SDK\Model\Credit;
 use ZoodPay\Api\SDK\Model\Customer;
 use ZoodPay\Api\SDK\Model\Delivery;
@@ -20,7 +21,7 @@ use ZoodPay\Api\SDK\Requests\GetCreditBalance;
 use ZoodPay\Api\SDK\Requests\SetTransactionDelivery;
 use ZoodPay\Api\SDK\Requests\CreateTransaction;
 use ZoodPay\Api\SDK\Requests\CreateRefund;
-use Zoodpay\Api\SDK\Requests\Signature;
+use ZoodPay\Api\SDK\Requests\Signature;
 
 // Health check
 try{
@@ -177,10 +178,17 @@ $items[0]->setQuantity(1.00);
 $items[0]->setSku("Test-SKU");
 $items[0]->setTaxAmount(1.00);
 
+
+$callbacks = new Callbacks();
+$callbacks->setErrorUrl("https://zoodpay.com");
+$callbacks->setSuccessUrl("https://zoodpay.com");
+$callbacks->setIpnUrl("https://zoodpay.com");
+$callbacks->setRefundUrl("https://zoodpay.com");
+
 try{
     echo "Create transaction" . PHP_EOL;
     $transactionRequest = new CreateTransaction();
-    $response = $transactionRequest->create($billing,$customer,$items,$order,$shipping,$shippingService);
+    $response = $transactionRequest->create($billing,$customer,$items,$order,$shipping,$shippingService,$callbacks);
     echo "Status Code: " . $response->getStatusCode() . PHP_EOL; 
     echo "Response: "; print_r($response->getBody()->getContents()); 
     echo PHP_EOL;

@@ -4,6 +4,7 @@
 use GuzzleHttp\Exception\GuzzleException;
 use ZoodPay\Api\SDK\Config;
 use ZoodPay\Api\SDK\Model\BillingShipping;
+use ZoodPay\Api\SDK\Model\Callbacks;
 use ZoodPay\Api\SDK\Model\Customer;
 use ZoodPay\Api\SDK\Model\Items;
 
@@ -81,8 +82,14 @@ class CreateTransactionTest extends TestCase
         $items[0]->setSku("Test-SKU". generateRandomString());
         $items[0]->setTaxAmount(1.00);
 
+        $callbacks = new Callbacks();
+        $callbacks->setErrorUrl("https://zoodpay.com");
+        $callbacks->setSuccessUrl("https://zoodpay.com");
+        $callbacks->setIpnUrl("https://zoodpay.com");
+        $callbacks->setRefundUrl("https://zoodpay.com");
+
         $transactionRequest = new CreateTransaction();
-        $response = $transactionRequest->create($billing, $customer, $items, $order, $shipping, $shippingService);
+        $response = $transactionRequest->create($billing, $customer, $items, $order, $shipping, $shippingService,$callbacks);
         $statusCode = $response->getStatusCode();
         $body = $response->getBody()->getContents();
 
